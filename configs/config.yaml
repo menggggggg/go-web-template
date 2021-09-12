@@ -1,0 +1,12 @@
+run_mode: debug
+swagger: false
+log:
+  level: debug
+http:
+  addr: ":8000"
+  cert_file: ""
+  key_file: ""
+monitor:
+  enable: false
+  addr: ""
+  config_dir: ""
