@@ -7,6 +7,6 @@ http:
   cert_file: ""
   key_file: ""
 monitor:
-  enable: false
-  addr: ""
+  enable: true
+  addr: ":6060"
   config_dir: ""
