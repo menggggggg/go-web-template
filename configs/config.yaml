@@ -6,6 +6,7 @@ http:
   addr: ":8000"
   cert_file: ""
   key_file: ""
+  shutdown_timeout: 30
 monitor:
   enable: true
   addr: ":6060"

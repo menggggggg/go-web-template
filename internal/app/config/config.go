@@ -8,7 +8,6 @@ import (
 )
 
 var (
-	// 全局配置
 	C    = new(Config)
 	once sync.Once
 )
@@ -27,9 +26,10 @@ type Log struct {
 }
 
 type HTTP struct {
-	Addr     string `yaml:"addr"`
-	CertFile string `yaml:"cert_file"`
-	KeyFile  string `yaml:"key_file"`
+	Addr            string `yaml:"addr"`
+	CertFile        string `yaml:"cert_file"`
+	KeyFile         string `yaml:"key_file"`
+	ShutdownTimeout int    `yaml:"shutdown_timeout"`
 }
 
 type Monitor struct {
