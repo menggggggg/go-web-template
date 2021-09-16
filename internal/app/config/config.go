@@ -18,6 +18,8 @@ type Config struct {
 	Log     Log     `yaml:"log"`
 	HTTP    HTTP    `yaml:"http"`
 	Monitor Monitor `yaml:"monitor"`
+	CORS    CORS    `yaml:"cores"`
+	GZIP    GZIP    `yaml:"gzip"`
 }
 
 type Log struct {
@@ -36,6 +38,19 @@ type Monitor struct {
 	Enable    bool   `yaml:"enable"`
 	Addr      string `yaml:"addr"`
 	ConfigDir string `yaml:"config_dir"`
+}
+
+type CORS struct {
+	Enable           bool     `yaml:"enable"`
+	AllowOrigins     []string `yaml:"allow_origins"`
+	AllowMethods     []string `yaml:"allow_methods"`
+	AllowHeaders     []string `yaml:"allow_headers"`
+	AllowCredentials bool     `yaml:"allow_credentials"`
+	MaxAge           int      `yaml:"max_age"`
+}
+
+type GZIP struct {
+	Enable bool `yaml:"enable"`
 }
 
 func LoadConfig() {
