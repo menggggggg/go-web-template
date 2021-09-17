@@ -13,7 +13,7 @@ var (
 )
 
 type Config struct {
-	RunMode string  `yaml:"run_mode"`
+	RunMode string  `yaml:"runMode"`
 	Swagger bool    `yaml:"swagger"`
 	Log     Log     `yaml:"log"`
 	HTTP    HTTP    `yaml:"http"`
@@ -29,24 +29,24 @@ type Log struct {
 
 type HTTP struct {
 	Addr            string `yaml:"addr"`
-	CertFile        string `yaml:"cert_file"`
-	KeyFile         string `yaml:"key_file"`
-	ShutdownTimeout int    `yaml:"shutdown_timeout"`
+	CertFile        string `yaml:"certFile"`
+	KeyFile         string `yaml:"keyFile"`
+	ShutdownTimeout int    `yaml:"shutdownTimeout"`
 }
 
 type Monitor struct {
 	Enable    bool   `yaml:"enable"`
 	Addr      string `yaml:"addr"`
-	ConfigDir string `yaml:"config_dir"`
+	ConfigDir string `yaml:"configDir"`
 }
 
 type CORS struct {
 	Enable           bool     `yaml:"enable"`
-	AllowOrigins     []string `yaml:"allow_origins"`
-	AllowMethods     []string `yaml:"allow_methods"`
-	AllowHeaders     []string `yaml:"allow_headers"`
-	AllowCredentials bool     `yaml:"allow_credentials"`
-	MaxAge           int      `yaml:"max_age"`
+	AllowOrigins     []string `yaml:"allowOrigins"`
+	AllowMethods     []string `yaml:"allowMethods"`
+	AllowHeaders     []string `yaml:"allowHeaders"`
+	AllowCredentials bool     `yaml:"allowCredentials"`
+	MaxAge           int      `yaml:"maxAge"`
 }
 
 type GZIP struct {

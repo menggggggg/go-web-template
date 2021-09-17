@@ -12,5 +12,5 @@ func InitLogger() {
 	logger.SetLevel(c.Level)
 	logger.SetFormat(c.Format)
 	logger.SetOutput(os.Stdout)
-	logger.SetReportCaller(true)
+	//logger.SetReportCaller(true)
 }

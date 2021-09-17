@@ -14,13 +14,19 @@ import (
 func InitGinEngine(r router.IRouter) *gin.Engine {
 	gin.SetMode(config.C.RunMode)
 
-	app := gin.Default()
+	app := gin.New()
 
 	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
 		logger.WithFields(logger.Fields{"method": httpMethod, "path": absolutePath, "handerName": handlerName}).Debug("http")
 	}
 
 	// 中间件配置
+	// logger
+	app.Use(middleware.LoggerMiddleware())
+
+	// 异常
+	app.Use(gin.Recovery())
+
 	// Version
 	app.Use(middleware.VersionMiddleware())
 

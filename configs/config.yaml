@@ -1,13 +1,13 @@
-run_mode: debug
+runMode: debug
 swagger: false
 log:
   level: debug
 http:
   addr: ":8000"
-  cert_file: ""
-  key_file: ""
-  shutdown_timeout: 30
+  certFile: ""
+  keyFile: ""
+  shutdownTimeout: 30
 monitor:
   enable: true
   addr: ":6060"
-  config_dir: ""
+  configDir: ""
