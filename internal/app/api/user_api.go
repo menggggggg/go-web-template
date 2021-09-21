@@ -1,8 +1,11 @@
 package api
 
 import (
+	"errors"
+
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
+	"github.com/menggggggg/go-web-template/internal/app/schema"
 	"github.com/menggggggg/go-web-template/pkg/logger"
 )
 
@@ -15,7 +18,12 @@ type UserAPI struct {
 
 // Get ...
 func (a *UserAPI) Get(c *gin.Context) {
-	//	ctx := c.Request.Context()
-	logger.WithContext(c).Info("get")
+	request := schema.UserGetRequest{}
+	if c.ShouldBind(&request) != nil {
+		c.AbortWithError(400, errors.New("param"))
+		return
+	}
+
+	logger.WithContext(c).Info(request)
 	c.JSON(200, "ok")
 }

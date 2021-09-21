@@ -11,29 +11,29 @@ import (
 func LoggerMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		start := time.Now()
-		path := c.Request.URL.Path
-		query := c.Request.URL.RawQuery
 		c.Next()
 
+		path := c.Request.URL.Path
+		query := c.Request.URL.RawQuery
 		cost := time.Since(start)
 
-		requestLogger := logger.Entry{}
+		// 记录请求信息
+		fields := make(logger.Fields)
+		fields["requestId"] = c.Value(RequestId)
 
-		// 记录业务信息
-		requestLogger.WithFields(logger.Fields{
-			"requestId": c.Value(RequestId),
-		})
+		if len(c.Errors) > 0 {
+			fields["errors"] = c.Errors.Errors()
+		}
+
+		fields["status"] = c.Writer.Status()
+		fields["method"] = c.Request.Method
+		fields["path"] = path
+		fields["query"] = query
+		fields["ip"] = c.ClientIP()
+		fields["user-agent"] = c.Request.UserAgent()
+		fields["cost"] = cost
 
 		// 记录请求信息
-		requestLogger.WithFields(logger.Fields{
-			"status":     c.Writer.Status(),
-			"method":     c.Request.Method,
-			"path":       path,
-			"query":      query,
-			"ip":         c.ClientIP(),
-			"user-agent": c.Request.UserAgent(),
-			"errors":     c.Errors.ByType(gin.ErrorTypePrivate).String(),
-			"cost":       cost,
-		}).Info(path)
+		logger.WithFields(fields).Info("access")
 	}
 }

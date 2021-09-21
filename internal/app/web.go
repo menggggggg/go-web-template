@@ -21,9 +21,6 @@ func InitGinEngine(r router.IRouter) *gin.Engine {
 	}
 
 	// 中间件配置
-	// logger
-	app.Use(middleware.LoggerMiddleware())
-
 	// 异常
 	app.Use(gin.Recovery())
 
@@ -32,6 +29,9 @@ func InitGinEngine(r router.IRouter) *gin.Engine {
 
 	// RequestId
 	app.Use(middleware.RequestIdMiddleware())
+
+	// logger
+	app.Use(middleware.LoggerMiddleware())
 
 	// CORS
 	if config.C.CORS.Enable {
