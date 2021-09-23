@@ -63,7 +63,7 @@ func SetReportCaller(caller bool) {
 }
 
 func WithContext(ctx context.Context) *Entry {
-	return logrus.WithContext(ctx)
+	return logrus.WithContext(ctx).WithField("X-Request-Id", ctx.Value("X-Request-Id"))
 }
 
 func WithError(err error) *Entry {

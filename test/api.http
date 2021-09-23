@@ -1,4 +1,4 @@
-GET http://127.0.0.1:8000/api/v1/user  HTTP/1.1
+GET http://127.0.0.1:8000/api/v1/user?name=zhaomeng  HTTP/1.1
 content-type: application/json
 
 {

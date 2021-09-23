@@ -8,14 +8,25 @@ package app
 
 import (
 	"github.com/menggggggg/go-web-template/internal/app/api"
+	"github.com/menggggggg/go-web-template/internal/app/dao"
 	"github.com/menggggggg/go-web-template/internal/app/router"
+	"github.com/menggggggg/go-web-template/internal/app/service"
 )
 
 // Injectors from wire.go:
 
 // BuildInjector 生成注入器
 func BuildInjector() *Injector {
-	userAPI := &api.UserAPI{}
+	db := InitGormDB()
+	userDao := &dao.UserDao{
+		DB: db,
+	}
+	userSrv := &service.UserSrv{
+		UserDao: userDao,
+	}
+	userAPI := &api.UserAPI{
+		UserSrv: userSrv,
+	}
 	routerRouter := &router.Router{
 		UserAPI: userAPI,
 	}

@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"sync"
 
@@ -17,6 +18,7 @@ type Config struct {
 	Swagger bool    `yaml:"swagger"`
 	Log     Log     `yaml:"log"`
 	HTTP    HTTP    `yaml:"http"`
+	MySQL   MySQL   `yaml:"mysql"`
 	Monitor Monitor `yaml:"monitor"`
 	CORS    CORS    `yaml:"cores"`
 	GZIP    GZIP    `yaml:"gzip"`
@@ -32,6 +34,26 @@ type HTTP struct {
 	CertFile        string `yaml:"certFile"`
 	KeyFile         string `yaml:"keyFile"`
 	ShutdownTimeout int    `yaml:"shutdownTimeout"`
+}
+
+// MySQL mysql配置参数
+type MySQL struct {
+	Host       string `yaml:"host"`
+	Port       int    `yaml:"port"`
+	User       string `yaml:"user"`
+	Password   string `yaml:"password"`
+	DBName     string `yaml:"dbName"`
+	Parameters string `yaml:"parameters"`
+
+	MaxLifetime  int `yaml:"maxLifetime"`
+	MaxOpenConns int `yaml:"maxOpenConns"`
+	MaxIdleConns int `yaml:"maxIdleConns"`
+}
+
+// DSN 数据库连接串
+func (a MySQL) DSN() string {
+	return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?%s",
+		a.User, a.Password, a.Host, a.Port, a.DBName, a.Parameters)
 }
 
 type Monitor struct {

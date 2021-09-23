@@ -47,7 +47,7 @@ func InitHTTPServer(ctx context.Context, handler http.Handler) func() {
 	}
 
 	go func() {
-		logger.WithContext(ctx).Printf("HTTP server is running at %s.", cfg.Addr)
+		logger.Infof("HTTP server is running at %s.", cfg.Addr)
 
 		var err error
 		if cfg.CertFile != "" && cfg.KeyFile != "" {
@@ -86,7 +86,7 @@ func Run(ctx context.Context) error {
 EXIT:
 	for {
 		sig := <-sc
-		logger.WithContext(ctx).Infof("Receive signal[%s]", sig.String())
+		logger.Infof("Receive signal[%s]", sig.String())
 		switch sig {
 		case syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT:
 			state = 0
@@ -98,7 +98,7 @@ EXIT:
 	}
 
 	cleanFunc()
-	logger.WithContext(ctx).Infof("Server exit")
+	logger.Infof("Server exit")
 	time.Sleep(time.Second)
 	os.Exit(state)
 	return nil

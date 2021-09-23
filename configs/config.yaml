@@ -7,6 +7,16 @@ http:
   certFile: ""
   keyFile: ""
   shutdownTimeout: 30
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  user: root
+  password: 123456
+  dbName: user
+  parameters: charset=utf8mb4&parseTime=True&loc=Local&allowNativePasswords=true
+  maxLifetime: 7200
+  maxOpenConns: 100
+  maxIdleConns: 19
 monitor:
   enable: true
   addr: ":6060"
