@@ -16,7 +16,7 @@ mysql:
   parameters: charset=utf8mb4&parseTime=True&loc=Local&allowNativePasswords=true
   maxLifetime: 7200
   maxOpenConns: 100
-  maxIdleConns: 19
+  maxIdleConns: 20
 monitor:
   enable: true
   addr: ":6060"

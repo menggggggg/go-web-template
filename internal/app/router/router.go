@@ -41,9 +41,13 @@ func (a *Router) RegisterAPI(app *gin.Engine) {
 
 	v1 := g.Group("/v1")
 	{
-		user := v1.Group("/user")
+		user := v1.Group("/users")
 		{
-			user.GET("", a.UserAPI.Get)
+			user.POST("", a.UserAPI.Create)
+			user.GET("", a.UserAPI.GetByName)
+			user.GET("/:userId", a.UserAPI.Get)
+			user.PUT("/:userId", a.UserAPI.Update)
+			user.DELETE("/:userId", a.UserAPI.Delete)
 		}
 	} // v1 end
 }

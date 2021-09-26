@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/google/wire"
-	"github.com/menggggggg/go-web-template/internal/app/schema"
+	"github.com/menggggggg/go-web-template/internal/app/schema/user"
 	"gorm.io/gorm"
 )
 
@@ -15,7 +15,7 @@ type UserDao struct {
 	DB *gorm.DB
 }
 
-func (a *UserDao) Get(ctx context.Context, name string) (*schema.User, error) {
+func (a *UserDao) Get(ctx context.Context, name string) (*user.User, error) {
 	// var item User
 	// ok, err := util.FindOne(ctx, GetUserDB(ctx, a.DB).Where("id=?", id), &item)
 	// if err != nil {
